@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/submit', function () {
+    return back()->with('success_message', 'Form was submitted! '.request()->name);
+})->middleware('auth');
